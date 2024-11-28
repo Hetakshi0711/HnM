@@ -16,8 +16,11 @@
             </div>
         @endif
 
-        <form action="{{ route('add_company') }}" method="POST" class="space-y-4">
+        <!-- <form action="{{ route('company/add') }}" method="POST" class="space-y-4"> -->
+        <form action="/company/add" method="POST">
             @csrf
+            <meta name="csrf-token" content="{{ csrf_token() }}">
+
             <div>
                 <label for="name" class="block font-medium">Company Name</label>
                 <input type="text" id="name" name="name" class="border rounded px-3 py-2 w-full" value="{{ old('name') }}">
@@ -47,5 +50,14 @@
             </button>
         </form>
     </div>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        })
+    </script>
 </body>
 </html>

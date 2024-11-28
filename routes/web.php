@@ -6,5 +6,5 @@ use App\Http\Controllers\CompanyController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::post('/add_company',[CompanyController::class,'store'])->name('add_company');
+Route::get('/company', [CompanyController::class, 'index']);
+Route::post('/company/add', [CompanyController::class, 'store']);
